@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    stages {
+        stage("Clean Up") {
+            steps {
+                deleteDir()
+            }
+        }
+        stage("Clone Repo") {
+            steps {
+                 dir("simple-maven-project")
+                {
+               
+                git url: 'https://github.com/houda921/jenkins-first-pipeline.git', branch: 'master'
+                }
+            }
+        }
+        stage("Build") {
+            steps {
+                dir("simple-maven-project")
+                {
+                     sh "mvn clean install "
+                }
+               
+                
+                
+            }
+        }
+        stage('Test') {
+            steps {
+                dir("simple-maven-project")
+                {
+                sh "mvn test"
+                }
+            }
+        }
+    }
+}
