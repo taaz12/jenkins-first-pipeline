@@ -21,5 +21,16 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+        stage('Additional Stage') {
+            steps {
+                echo 'This is an additional stage.'
+            }
+        }
     }
 }
+
+
+
+
+
+
